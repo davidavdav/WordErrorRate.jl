@@ -3,6 +3,7 @@ Compute the word error rate for Automatic Speech Recognition
 
 # Synopsys
 
+```julia
 using WordErrorRate
 
 ref = ["This", "is", "a", "test"]
@@ -17,3 +18,4 @@ align(w)
 ## print alignments in a format very similar to NIST sclite:
 pralign(w)
 str = pralign(String, w)
+```
