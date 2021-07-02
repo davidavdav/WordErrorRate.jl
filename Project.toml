@@ -1,0 +1,7 @@
+name = "WordErrorRate"
+uuid = "150a09a7-b056-4ea4-b4c3-781faca6e549"
+authors = ["David A. van Leeuwen <david.vanleeuwen@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"

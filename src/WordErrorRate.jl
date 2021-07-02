@@ -1,5 +1,7 @@
 module WordErrorRate
 
+using Printf: @sprintf
+
 export WER, wer, align, pralign
 
 struct WER
@@ -37,7 +39,7 @@ function WER(ref::Vector, hyp::Vector; subcost=4, inscost=3, delcost=3)
                 decision[i, j] = CORRECT
             else
                 sid = [cost[i-1, j-1] + subcost, cost[i, j-1] + inscost, cost[i-1, j] + delcost]
-                mini = indmin(sid)
+                mini = argmin(sid)
                 cost[i, j] = sid[mini]
                 decision[i, j] = mini
             end
@@ -54,15 +56,15 @@ function WER(ref::Vector, hyp::Vector; subcost=4, inscost=3, delcost=3)
             nsub += dec
             i -= 1
             j -= 1
-            unshift!(refeval, dec)
-            unshift!(hypeval, dec)
+            pushfirst!(refeval, dec)
+            pushfirst!(hypeval, dec)
         elseif dec == INSERTION ## ins
             j -= 1
-            unshift!(hypeval, dec)
+            pushfirst!(hypeval, dec)
             nins += 1
         else
             i -= 1
-            unshift!(refeval, dec)
+            pushfirst!(refeval, dec)
             ndel += 1
         end
     end
@@ -120,7 +122,7 @@ function pralign(io::IO, w::WER; ins="*", del="*")
     end
 end
 
-pralign(w::WER; kwargs...) = pralign(STDOUT, w; kwargs...)
+pralign(w::WER; kwargs...) = pralign(stdout, w; kwargs...)
 function pralign(::Type{String}, w::WER; kwargs...)
     io = IOBuffer()
     pralign(io, w; kwargs...)

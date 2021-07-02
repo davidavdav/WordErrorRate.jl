@@ -19,3 +19,10 @@ align(w)
 pralign(w)
 str = pralign(String, w)
 ```
+
+# Install
+
+```julia
+Pgg] add https://github.com/davidavdav/WordErrorRate.jl
+```
+
