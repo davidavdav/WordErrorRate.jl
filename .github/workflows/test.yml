@@ -25,9 +25,7 @@ jobs:
           - x64
         include:
           - os: macOS-latest
-            version: 
-              - '1'
-              - '1.8'
+            version: '1'
             arch: x64
 
     steps:
